@@ -6,7 +6,10 @@ The installer is powered by [`@funstack/skill-installer`](https://github.com/uhy
 
 ## Install
 
+Install the package first, then run the installer:
+
 ```bash
+npm install learn-cursor-skill
 npx learn-cursor-skill
 ```
 
