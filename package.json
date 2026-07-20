@@ -1,0 +1,50 @@
+{
+  "name": "learn-cursor-skill",
+  "version": "0.1.0",
+  "description": "Installer for the learn-cursor Cursor skill — an interactive, hands-on guided tour of Cursor.",
+  "keywords": [
+    "cursor",
+    "cursor-skill",
+    "skill",
+    "learn-cursor",
+    "installer",
+    "cli"
+  ],
+  "homepage": "https://github.com/chrisdola/learn-cursor-skill#readme",
+  "bugs": {
+    "url": "https://github.com/chrisdola/learn-cursor-skill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chrisdola/learn-cursor-skill.git"
+  },
+  "license": "MIT",
+  "author": "chrisdola",
+  "type": "module",
+  "bin": {
+    "learn-cursor-skill": "./dist/bin/skill-installer.mjs"
+  },
+  "files": [
+    "dist/",
+    "skill/",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build",
+    "test": "npm run typecheck"
+  },
+  "dependencies": {
+    "@funstack/skill-installer": "^1.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.6.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
