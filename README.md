@@ -6,16 +6,23 @@ This skill is Cursor-only, so the installer only writes to a `.cursor/skills` di
 
 ## What does it do?
 
-Check out the Skill's [README](./skill/learn-cursor/README.md) for more information on exactly how it works!
+Check out the Skill's [README](./skills/learn-cursor/README.md) for more information on exactly how it works!
 
 
 ## Install
 
-Install the package first, then run the installer:
+1. Clone the repo
 
 ```bash
-npm install learn-cursor-skill
-npx learn-cursor-skill
+git clone https://github.com/chrisdola/learn-cursor-skill.git
+```
+
+
+
+2. Install the package first, then run the installer:
+
+```bash
+npm install && npx learn-cursor-skill
 ```
 
 When run interactively, you'll be asked whether to install for your user account or this project. After it's installed, open Cursor and ask the agent to **"learn Cursor"** to start the guided tour.
@@ -91,7 +98,7 @@ The CLI is a small, dependency-free TypeScript script:
 - Build: `npm run build` (compiles to `dist/bin/skill-installer.mjs` via `tsc`)
 - Type-check: `npm test`
 
-`npm install` runs the build automatically (via the `prepare` script). The published package ships the compiled `dist/` and the `skill/` files.
+`npm install` runs the build automatically (via the `prepare` script). The published package ships the compiled `dist/` and the `skills/` files.
 
 ## License
 

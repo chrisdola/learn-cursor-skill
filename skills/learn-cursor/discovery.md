@@ -11,25 +11,24 @@ Session-start order: **Capability check → Intro → begin? → phased discover
 1. **Inspect** your available tools/functions. Is `AskQuestion` listed?
 2. **If yes** — proceed to **Intro** with no capability commentary.
 3. **If no** — one short note in **Coaching voice**, then **Intro** in the **same turn**:
-   - This skill uses **`AskQuestion`** for discovery, Start, and lesson checks — interactive cards, not copy-paste A/B in prose.
-   - Suggest switching to a **higher-reasoning agent model** that exposes native tools — e.g. open the model picker (**Cmd+/** Mac / **Ctrl+/** Windows) and pick a thinking/reasoning-tier model you use for Agent work.
+   - This skill uses **`AskQuestion`** for discovery, Start, and lesson checks — interactive cards, not copy-paste A/B in prose. 
+   - Suggest switching to a **different model** that exposes native tools — e.g. open the model picker (**Cmd+/** Mac / **Ctrl+/** Windows) and pick a thinking/reasoning-tier model you use for Agent work.
    - **Do not suggest Grok** — it does not provide `AskQuestion` in Agent chat.
    - Do **not** name a single mandatory model; the learner picks what they have enabled. Goal: any model where `AskQuestion` is available.
    - They can continue on the current model; use **prose fallback** (lettered A/B options) for questions — do **not** block or refuse.
+   - Make sure to tell them to start a **new** chat session with the new model and call the `/learn-cursor` skill again. 
 4. **Do not** call `GetMcpTools` or search MCP to "find" `AskQuestion` — that is a false negative (see **Finding AskQuestion**).
 
 ```markdown
-Quick note: I don't have the **AskQuestion** tool in this chat, so you'll get lettered options instead of tap-to-answer cards. For the intended experience, switch to a higher-reasoning Agent model in the picker (**Cmd+/**) — **not Grok**, which lacks this tool. We can continue here if you prefer.
+**Quick note**: I don't have the **AskQuestion** tool in this chat, so you'll get lettered options instead of tap-to-answer cards. For the intended experience, open a new Agent chat with a different model (not Grok as the model disables AskQuestion) and invoke the `/learn-cursor` skill again.
 
-**Learn Cursor** — hands-on exercises with real depth, not a surface tour.
-…
 ```
 
-Do not turn the capability check into a lecture or extra questions.
+Do not turn the capability check into a lecture. 
 
 ## Then: intro and discovery
 
-1. Send the **Intro** (template below) **and** ask Yes/No to begin — `AskQuestion` if listed, else prose A/B (merge with capability note above when `AskQuestion` is absent).
+1. Send the **Intro** (template below) **and** ask Yes/No to begin — `AskQuestion` if listed, else prose A/B.
 2. If No — stop politely; offer to resume later with `/learn-cursor`.
 3. If Yes — run **phased discovery** — one question per turn (see below).
 4. After discovery: **Hard gate** ([learning-map.md](learning-map.md)) — Write map → `open_resource` (**must succeed or attempt before any Start question**) → absolute-path link in reply → **then** Start control. Never AskQuestion Start before the map is opened.
@@ -40,7 +39,7 @@ Do not turn the capability check into a lecture or extra questions.
 Chat copy (keep short):
 
 ```markdown
-**Learn Cursor** — hands-on exercises with real depth, not a surface tour.
+**Learn Cursor** — hands-on exercises shaped to your experience.
 
 I'll ask **a few quick questions** (one at a time), then open a **learning map** scoped to your goals. Pick a lesson on the map, then tap **Start** in the chat question.
 ```

@@ -1,6 +1,6 @@
 {
   "name": "learn-cursor-skill",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Installer for the learn-cursor Cursor skill — an interactive, hands-on guided tour of Cursor.",
   "keywords": [
     "cursor",
@@ -26,7 +26,7 @@
   },
   "files": [
     "dist/",
-    "skill/",
+    "skills/",
     "README.md",
     "LICENSE"
   ],

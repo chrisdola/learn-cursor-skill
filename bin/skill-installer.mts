@@ -14,7 +14,7 @@ const SKILL_NAME = "learn-cursor";
 // and package.json live two levels up. Resolve relative to the compiled file
 // (not process.cwd()) so `npx` works from anywhere.
 const here = path.dirname(fileURLToPath(import.meta.url));
-const SOURCE_DIR = path.resolve(here, "..", "..", "skill", SKILL_NAME);
+const SOURCE_DIR = path.resolve(here, "..", "..", "skills", SKILL_NAME);
 const PKG_VERSION: string = JSON.parse(
   fs.readFileSync(path.resolve(here, "..", "..", "package.json"), "utf8"),
 ).version;
