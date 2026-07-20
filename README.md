@@ -1,8 +1,13 @@
 # learn-cursor-skill
 
-Installer for the **`learn-cursor`** [Cursor](https://cursor.com) skill — an interactive, hands-on guided tour of Cursor. Running the CLI copies the skill into your AI agent's skills directory so the agent can teach you Cursor step by step.
+Installer for the **`learn-cursor`** [Cursor](https://cursor.com) skill — an interactive, hands-on guided tour of Cursor. Running the CLI copies the skill into a Cursor skills directory so the agent can teach you Cursor step by step.
 
-The installer is powered by [`@funstack/skill-installer`](https://github.com/uhyo/funstack-skill-installer), so it works with any supported agent (Cursor, Claude Code, Codex, Copilot, and more) — not just Cursor.
+This skill is Cursor-only, so the installer only writes to a `.cursor/skills` directory — either your **user** account or the current **project**.
+
+## What does it do?
+
+Check out the Skill's [README](./skill/learn-cursor/README.md) for more information on exactly how it works!
+
 
 ## Install
 
@@ -13,51 +18,59 @@ npm install learn-cursor-skill
 npx learn-cursor-skill
 ```
 
-When run interactively, you'll get a menu to pick your agent. Choose **Cursor** to install into `./.cursor/skills`, then open Cursor and ask the agent to **"learn Cursor"** to start the guided tour.
+When run interactively, you'll be asked whether to install for your user account or this project. After it's installed, open Cursor and ask the agent to **"learn Cursor"** to start the guided tour.
 
 ## Usage
 
 ### Interactive (default)
 
-Running `npx learn-cursor-skill` in a terminal shows an agent picker:
+Running `npx learn-cursor-skill` in a terminal prompts for the install scope:
 
 ```
-Select AI Agent (↑↓ to move, Enter to confirm)
-❯ 1. Claude Code (./.claude/skills)
-  2. Codex (./.codex/skills)
-  3. GitHub Copilot (./.github/skills)
-  4. Cursor (./.cursor/skills)
-  5. Gemini CLI (./.gemini/skills)
-  6. Windsurf (./.windsurf/skills)
-  7. OpenCode (./.opencode/skills)
-  8. Antigravity 2 (./.agents/skills)
-  9. Other (custom path)
+Where should the "learn-cursor" skill be installed?
+
+  1. This project   (<cwd>/.cursor/skills)
+  2. Your user account (~/.cursor/skills)
 ```
 
-- Arrow keys (↑↓) to move, number keys (1–9) to jump, **Enter** to confirm.
-- The listed paths are **relative to your current directory**, so this installs the skill into the current project (e.g. `./.cursor/skills/learn-cursor`).
-- Pick **Other** to type a custom destination — e.g. your global Cursor skills directory `~/.cursor/skills`.
+### Choosing a scope directly
+
+Pass the scope as a flag to skip the prompt:
+
+```bash
+npx learn-cursor-skill --user      # ~/.cursor/skills/learn-cursor (all projects)
+npx learn-cursor-skill --project   # ./.cursor/skills/learn-cursor (this project)
+```
+
+| Flag | Aliases | Installs to |
+|------|---------|-------------|
+| `--user` | `--global`, `-g` | `~/.cursor/skills/learn-cursor` |
+| `--project` | `--local` | `./.cursor/skills/learn-cursor` |
+
+Other options:
+
+- `-f, --force` — overwrite an existing `learn-cursor` skill
+- `--dry-run` — show what would happen without writing files
+- `-v, --version`, `-h, --help`
 
 ### Non-interactive (CI / scripts)
 
-When there's no TTY, set `SKILL_INSTALL_PATH` to the target skills directory:
+When there's no TTY, pass a scope flag or set `LEARN_CURSOR_SCOPE`:
 
 ```bash
-# Install into the current project's Cursor skills dir
-SKILL_INSTALL_PATH=./.cursor/skills npx learn-cursor-skill
-
-# Install globally for Cursor (all projects)
-SKILL_INSTALL_PATH="$HOME/.cursor/skills" npx learn-cursor-skill
+LEARN_CURSOR_SCOPE=user npx learn-cursor-skill      # ~/.cursor/skills
+LEARN_CURSOR_SCOPE=project npx learn-cursor-skill   # ./.cursor/skills
 ```
 
-The skill is copied to `<SKILL_INSTALL_PATH>/learn-cursor`. Without `SKILL_INSTALL_PATH` in a non-interactive shell, the installer exits with an error explaining how to set it.
+Without a scope in a non-interactive shell, the installer exits with an error explaining how to set one.
 
 ## What gets installed
 
-The skill is copied to `<skills-dir>/learn-cursor/`:
+The skill is copied to `<.cursor/skills>/learn-cursor/`:
 
 - `README.md` — what the skill does, how the guided tour works, and the canvas
-- `SKILL.md` — the skill definition and teaching flow
+- `SKILL.md` — the orchestrator: flow, rules, and the master lesson table
+- `discovery.md`, `learning-map.md`, `teaching.md` — per-phase instructions (progressive disclosure)
 - `reference.md` — the reference material the tutor pulls from
 - `learning-map.canvas.tsx` — the interactive learning-map canvas
 
@@ -67,12 +80,12 @@ Delete the installed folder, e.g.:
 
 ```bash
 rm -rf ./.cursor/skills/learn-cursor      # project install
-rm -rf ~/.cursor/skills/learn-cursor      # global install
+rm -rf ~/.cursor/skills/learn-cursor      # user install
 ```
 
 ## Development
 
-The CLI is a small TypeScript wrapper around `@funstack/skill-installer`:
+The CLI is a small, dependency-free TypeScript script:
 
 - Source: `bin/skill-installer.mts`
 - Build: `npm run build` (compiles to `dist/bin/skill-installer.mjs` via `tsc`)

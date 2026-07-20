@@ -66,7 +66,12 @@ The chat and the canvas don't auto-sync: the **chat teaches**, and the **canvas 
 
 ## Files
 
-- `SKILL.md` — the skill definition and full teaching flow
+The skill uses progressive disclosure — a lean `SKILL.md` orchestrator that points to per-phase supporting files:
+
+- `SKILL.md` — orchestrator: flow, depth standard, core rules, and the master lesson table
+- `discovery.md` — session start, phased discovery, `AskQuestion` mechanics, question discipline
+- `learning-map.md` — the learning-map hard gate, canvas mechanics, and the Start control
+- `teaching.md` — coaching voice, lesson depth, teaching loop, tailoring, and session end
 - `reference.md` — feature-by-feature depth and doc links the coach pulls from
 - `learning-map.canvas.tsx` — the interactive learning-map / progress canvas
 
